@@ -7,6 +7,7 @@ const router = express.Router();
 
 export const getPosts = async (req, res) => { 
     try {
+        console.log("Entry GET")
         const postMessages = await PostMessage.find();
                 
         res.status(200).json(postMessages);
@@ -17,6 +18,7 @@ export const getPosts = async (req, res) => {
 
 export const getPost = async (req, res) => { 
     const { id } = req.params;
+    console.log("Entry GET post", id)
 
     try {
         const post = await PostMessage.findById(id);
@@ -29,6 +31,7 @@ export const getPost = async (req, res) => {
 
 export const createPost = async (req, res) => {
     const { title, message, selectedFile, creator, tags } = req.body;
+    console.log("Entry create ", title)
 
     const newPostMessage = new PostMessage({ title, message, selectedFile, creator, tags })
 
@@ -44,6 +47,7 @@ export const createPost = async (req, res) => {
 export const updatePost = async (req, res) => {
     const { id } = req.params;
     const { title, message, creator, selectedFile, tags } = req.body;
+    console.log("Entry update", id)
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
@@ -56,6 +60,7 @@ export const updatePost = async (req, res) => {
 
 export const deletePost = async (req, res) => {
     const { id } = req.params;
+    console.log("Entry delete", id)
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
@@ -66,6 +71,7 @@ export const deletePost = async (req, res) => {
 
 export const likePost = async (req, res) => {
     const { id } = req.params;
+    console.log("Entry like", id)
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
     
