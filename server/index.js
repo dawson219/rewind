@@ -20,8 +20,8 @@ app.get('/' , (req , res)=>{
   res.send('Hello to memories API');
 });
 
-const CONNECTION_URL = 'mongodb+srv://dawsonquadros:dawsonquadros123@cluster1.p83zg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-const PORT = process.env.PORT|| 5000;
+const CONNECTION_URL = process.env.CONNECTION_URL;
+const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
